@@ -32,7 +32,7 @@ module.exports = {
 						attrs: [':data-src']
 					}
 				}
-			}
+            },
         ],
     },
 };

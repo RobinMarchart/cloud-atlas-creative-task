@@ -11,4 +11,11 @@ jobs:
       run: yarn
     - name: yarn build using webpack
       run: yarn build
+    - name: delete main.js
+      run: rm dist/main.js
+    - name: GitHub Pages Deploy
+      uses: maxheld83/ghpages@v0.2.1
+      env:
+        BUILD_DIR: dist/
+
       

@@ -1,0 +1,14 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: yarn install dependencies
+      run: yarn
+    - name: yarn build using webpack
+      run: yarn build
+      

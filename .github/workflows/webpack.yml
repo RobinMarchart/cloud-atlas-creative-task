@@ -1,6 +1,9 @@
 name: webpack CD
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -14,8 +17,12 @@ jobs:
     - name: delete main.js
       run: rm dist/main.js
     - name: GitHub Pages Deploy
-      uses: maxheld83/ghpages@v0.2.1
+      uses: JamesIves/github-pages-deploy-action@master
       env:
-        BUILD_DIR: dist/
+        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+        BASE_BRANCH: master
+        BRANCH: gh-pages
+        FOLDER: dist
+        BUILD_SCRIPT: rm dist/main.js
 
       

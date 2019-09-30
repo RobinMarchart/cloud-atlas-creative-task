@@ -36,4 +36,4 @@ $("#image-tab").html(eval(require("html-loader!./image.html")));
 
 $("#settings-tab").html(eval(require("html-loader!./settings.html")));
 
-require("./svg")
+svg=require("./svg")

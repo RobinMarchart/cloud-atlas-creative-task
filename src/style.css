@@ -1,4 +1,20 @@
-.nav-item > .nav-link.active,
-.nav-item.active > .nav-link{
+.nav-item > .nav-link.tab-link.active,
+.nav-item.active > .nav-link.tab-link{
     background-color: #222a33;
+}
+.nav-link.image-btn.active{
+    background-color: lightgray;
+}
+
+path.yellow{
+    fill: yellow;
+    stroke: none;
+}
+path.orange{
+    fill: orange;
+    stroke: none;
+}
+path.red{
+    fill: red;
+    stroke: none;
 }

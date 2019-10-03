@@ -10,14 +10,14 @@ $("nav").addClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").appen
 
 function navbar_tab_hook(btn){
     $(".collapse.show.tab:not(#"+$(btn).data("target")+")").collapse("hide");
-    $(".nav-link.active").removeClass("active");
+    $(".tab-link.nav-link.active").removeClass("active");
     $('#'+$(btn).data("target")).collapse("show");
     $(btn).addClass("active");
 }
 
-$("#navs").append("<li class=\"nav-item\"><a data-target=\"settings-tab\">Settings</a></li>");
-$("#navs").append("<li class=\"nav-item\"><a data-target=\"image-tab\">Images</a></li>");
-$("#navs").append("<li class=\"nav-item\"><a data-target=\"about-tab\">About</a></li>");
+$("#navs").append("<li class=\"nav-item tab-link\"><a data-target=\"settings-tab\">Settings</a></li>");
+$("#navs").append("<li class=\"nav-item tab-link\"><a data-target=\"image-tab\">Images</a></li>");
+$("#navs").append("<li class=\"nav-item tab-link\"><a data-target=\"about-tab\">About</a></li>");
 
 $("body").addClass("bg-light").append("<div class=\"d-block d-lg-none\" style=\"height: 78px;\"></div>")
 .append("<div id=\"root\" class=\"container-fluid bg-light\" style=\"padding-top: 55px;\"></div>");
@@ -35,5 +35,7 @@ $("#about-tab").html(eval(require("html-loader!./about.html")));
 $("#image-tab").html(eval(require("html-loader!./image.html")));
 
 $("#settings-tab").html(eval(require("html-loader!./settings.html")));
+
+document.addEventListener("image-created",data=>navbar_tab_hook($("#image-tab").get()));
 
 svg=require("./svg")

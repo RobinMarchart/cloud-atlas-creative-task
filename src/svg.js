@@ -2,23 +2,6 @@ const svg = require("svg.js");
 var $ = require("jquery");
 import 'bootstrap';
 
-
-$("body").append("<div style=\"display: none;\" id=\"flame-shape-container-tmp\"></div>").append("<div style=\"display: none;\" id=\"flame-shape-container-tmp\"></div>").append("<div style=\"display: none;\" id=\"flame-container\"></div>");
-$("#flame-shape-container-tmp").html(eval(require("html-loader!./flame-shape.html")));
-
-var fire_icon_draw=svg("flame-container").size(10,15);
-
-var fire_icon=fire_icon_draw.group()
-
-var fire_path=svg.get("flame-path")
-
-var color_ind=0;
-
-["yellow","orange","red"].forEach(element => {
-    fire_path.clone().size(10-2*color_ind).addTo(fire_icon).move(color_ind,color_ind).addClass(element);
-    color_ind++;
-});
-
 var image_id = -1;
 
 function set_display_image(num) {
@@ -29,6 +12,16 @@ function set_display_image(num) {
 }
 document.addEventListener("image-created", data => set_display_image(data.id))
 
+function generate_path(x,y,rot,size,max_size){
+    var str="M "+x+' '+y+" "
+    while(size<max_size){
+        str+="A "+size+" "+size+" "+rot+" 0 1 "+(x+Math.cos((rot+=180)/180*Math.PI)*size)+" "+(y+Math.sin((rot+=180)/180*Math.PI)*size)+" ";
+        size=size*2
+    }
+    return str;
+
+}
+
 function create() {
     console.log("Creating new graphic");
     var i = image_id++
@@ -36,7 +29,8 @@ function create() {
     $("#image-button-" + i).on("click", data => set_display_image(parseInt(data.currentTarget.getAttribute("data-target"))));
     $("#image-container").append("<div id=\"image-container-" + i + "\" class=\"image-tab collapse\"></div>");
 
-    var draw = svg("image-container-" + i);
+    var draw = svg("image-container-" + i).size(500,500);
+    draw.path(generate_path(100,100,0,5,200));
 
     document.getElementById("create").dispatchEvent(new Event("image-created", { id: i }));
 }

@@ -6,15 +6,7 @@
     background-color: lightgray;
 }
 
-path.yellow{
-    fill: yellow;
-    stroke: none;
-}
-path.orange{
-    fill: orange;
-    stroke: none;
-}
-path.red{
-    fill: red;
-    stroke: none;
+path{
+    fill: none;
+    stroke: black;
 }

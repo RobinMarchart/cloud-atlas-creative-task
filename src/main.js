@@ -36,6 +36,6 @@ $("#image-tab").html(eval(require("html-loader!./image.html")));
 
 $("#settings-tab").html(eval(require("html-loader!./settings.html")));
 
-document.addEventListener("image-created",data=>navbar_tab_hook($("#image-tab").get()));
+document.addEventListener("image-created",data=>navbar_tab_hook(document.getElementById("image-tab")));
 
 svg=require("./svg")

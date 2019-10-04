@@ -2,7 +2,7 @@ const svg = require("svg.js");
 var $ = require("jquery");
 import 'bootstrap';
 
-var image_id = -1;
+var image_id = 1;
 
 function set_display_image(num) {
     $(".image-btn.active").removeClass("active");
@@ -16,7 +16,7 @@ function* get_next_rad(distance_radius,distance_line,max_rad){
     let rad=0;
     while (true){
         rad=Math.sqrt((distance_line*distance_radius/2/Math.PI)+(rad*rad));
-        console.info(rad);
+        //console.info(rad);
         if (rad<max_rad)yield rad;
         else return rad;
     }
@@ -30,7 +30,9 @@ function get_point(distance_radius,rad,base){
 function print_flame(draw,base_x,base_y,min_x,min_y,max_x,max_y,point){
     var x=point.x+base_x;
     var y=point.y+base_y;
-    if((x>=min_x)&&(y>=min_y)&&(x<=max_x)&&(y<=max_y))draw.plain("\u{1F525}").move(x,y).rotate(point.arc,x,y);
+    var arc=point.arc*180;
+    console.info(arc);
+    if((x>=min_x)&&(y>=min_y)&&(x<=max_x)&&(y<=max_y))draw.plain("\u{1F525}").move(x,y).rotate(arc,x,y);
 }
 
 function create() {

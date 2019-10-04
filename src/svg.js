@@ -32,7 +32,7 @@ function create() {
     var draw = svg("image-container-" + i).size(500,500);
     draw.path(generate_path(100,100,0,5,200));
 
-    document.getElementById("create").dispatchEvent(new Event("image-created", { id: i }));
+    document.dispatchEvent(new Event("image-created", { id: i }));
 }
 
 
